@@ -1,0 +1,125 @@
+<html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+	table {
+		font-family: monospace;
+		border-collapse: collapse;
+	}
+
+	th{
+		background-color:#fee78b;
+		font-family:inherit;
+	}
+	tr:nth-child(even) {
+		background-color: inherit;
+	}
+	.match-rate{
+	color: red;
+	text-align: right !important;
+	}
+	.match-time{
+	color: black;
+	text-align: right;
+	}
+	.match-name{
+	color: blue;
+	text-align: right;
+	}
+	.btn-submit{
+		float:right !important;
+		background-color: green !important;
+	}
+</style>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<body id="page-top">
+	<div class="container">
+		<div class="row">
+			<div class="col-12 col-xl-12 col-lg-12 col-md-12 ">
+				<nav class="navbar navbar-inverse">
+					<div class="container-fluid">
+						<div class="navbar-header">
+							<a class="navbar-brand" href="#">Bet</a>
+						</div>
+						<ul class="nav navbar-nav">
+							<li class="active"><a href="#">Home</a></li>
+							<li><a href="./CreateMatch.html">CreateMatch</a></li>
+							<li><a href="./BetMatch.html">PlaceBet</a></li>
+							<li><a href="./UpdateResults.html">UpdateMatch</a></li>
+						</ul>
+						<ul class="nav navbar-nav navbar-right">
+							<li><a href="#" id="login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+						</ul>
+					</div>
+				</nav>
+			</div>
+			<div class="col-9 col-xl-9 col-lg-9 col-md-9">
+				<table class="table table-striped table-hover" id = "table-match-view">
+					<thead class="thead-light">
+						<tr>
+							<th>Date Time</th>
+							<th>Match</th>
+							<th>Win</th>
+							<th>Draw</th>
+							<th>Lose</th>
+						</tr>
+					</thead>
+					<tbody id ="tbody-match-view">
+						<!--Fill data here-->
+					</tbody>
+				</table>
+				<hr/>
+			</div>
+
+			<div class="col-3 col-xl-3 col-lg-3 col-md-3">
+							<form id="form-create-match" class="form-row">
+					<div class="form-group">
+						<label class="col-2 col-form-label" >Match</label>
+						<div class="col-6">
+							<input class="form-control" type="input" placeholder = "Home - Away" id="match-name-input" required>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-2 col-form-label">Date Time</label>
+						<div class="col-6">
+							<input class="form-control" type="datetime-local" placeholder = "01/01/1990" id="datetime-input" required>
+							</div>
+					</div>
+					<div class="form-group">
+						<label class="col-2 col-form-label">Win</label>
+						<div class="col-6">
+							<input class="form-control" type="number" placeholder = "0.00" id="rate-win" step="0.01">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-2 col-form-label">Draw</label>
+						<div class="col-6">
+							<input class="form-control" type="number" placeholder = "0.00" id="rate-draw" step="0.01" >
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-2 col-form-label">Lose</label>
+						<div class="col-6">
+							<input class="form-control" type="number" placeholder="0.00" id="rate-lose" step="0.01">
+						</div>
+					</div>
+				<div class="form-group">
+					<div class="col-6">
+						<button type="submit" class="btn btn-primary btn-submit" id="post">Submit</button>
+					</div>
+				</div>
+			</form>
+			</div>
+		</div>
+	</div>
+
+	<script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@1.0.0-beta.37/dist/web3.min.js"></script>
+	<script src="./scripts/App.js"></script>
+	<script src="./scripts/CreateMatch.js"></script>
+	<script>
+	</script>
+</body>
+
+</html>

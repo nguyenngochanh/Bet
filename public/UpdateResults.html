@@ -1,0 +1,253 @@
+<html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+	table {
+	  font-family: monospace;
+	  border-collapse: collapse;
+	}
+	#table-match-view th{
+		background-color:blue;
+		font-family:inherit;
+		font-style: italic;
+		color: white;
+	}
+	#table-history-view th{
+		background-color:#fee78b;
+		font-family:inherit;
+	}
+	tr:nth-child(even) {
+	  background-color: inherit;
+	}
+
+
+.btn-submit{
+	float:right !important;
+	background-color: blue !important;
+}
+.eth-label{
+	font-size: 11px;
+	color: blue;
+	float:right;
+}
+.label-info{
+	font-size: 13px;
+	text-align: left;
+	padding: 2px;
+	background: white!important;
+	font-style: oblique;
+	color: blockquote;
+}
+.badge{
+	background-color: blue!important;
+	font-size: 13px !important;
+}
+.disable-match-form{
+	display: none;
+}
+</style>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<body id="page-top">
+	<div class="container">
+		<div class="row">
+				<div class="col-12 col-xl-12 col-lg-12 col-md-12 ">
+					<nav class="navbar navbar-inverse">
+						<div class="container-fluid">
+							<div class="navbar-header">
+								<a class="navbar-brand" href="#">Bet</a>
+							</div>
+							<ul class="nav navbar-nav">
+								<li class="active"><a href="#">Home</a></li>
+								<li><a href="./CreateMatch.html">CreateMatch</a></li>
+								<li><a href="./BetMatch.html">PlaceBet</a></li>
+							</ul>
+							<ul class="nav navbar-nav navbar-right">
+								<li><a href="#" id="login"><span class="glyphicon glyphicon-log-in" name="get-user"></span>Login</a></li>
+							</ul>
+						</div>
+					</nav>
+				</div>
+				<!--table match view-->
+				<div class="col-9 col-xl-9 col-lg-9 col-md-9">
+						<table class="table table-striped table-hover" id = "table-match-view">
+							<thead class="thead-dark">
+								<tr>
+									<th class="col-3 col-xl-2 col-lg-2 col-md-2">Time</th>
+									<th class="col-4 col-xl-3 col-lg-3 col-md-3">Match</th>
+									<th class="col-1 col-xl-2 col-lg-2 col-md-2">Win</th>
+									<th class="col-1 col-xl-2 col-lg-2 col-md-1">Draw</th>
+									<th class="col-1 col-xl-1 col-lg-1 col-md-1">Lose</th>
+									<th class="col-1 col-xl-1 col-lg-1 col-md-1">Status</th>
+									<th class="col-1 col-xl-1 col-lg-1 col-md-1">Results</th>
+									<th class="col-1 col-xl-1 col-lg-1 col-md-1">Select</th>
+								</tr>
+							</thead>
+							<tbody id ="tbody-match-view">
+							</tbody>
+						</table>
+				</div>
+				<!--Form match update-->
+				<div class="col-3 col-xl-3 col-lg-3 col-md-3">
+					<div class=""><span class="label label-warning badge">Match Infomation <span></div>
+						<br>
+						<form id="form-update-match" class="form-inline disable-match-form">
+							<table class="table table-inlines" id = "table-match-info">
+								<tr>
+									<td class="col-4 col-xl-4 col-lg-4 col-md-4"><label class="label-info">Match</label></td>
+									<td class="col-8 col-xl-8 col-lg-8 col-md-8"><span class="match-name"></span></td>
+								</tr>
+								<tr>
+									<td class="col-4 col-xl-4 col-lg-4 col-md-4"><label class="label-info">Time</label></td>
+									<td class="col-8 col-xl-8 col-lg-8 col-md-8"><span class="match-date"></span></td>
+								</tr>
+								<tr>
+									<td class="col-4 col-xl-4 col-lg-4 col-md-4"><label class="label-info">Win</label></td>
+									<td class="col-8 col-xl-8 col-lg-8 col-md-8"><span class="match-win"></span></td>
+								</tr>
+								<tr>
+									<td class="col-4 col-xl-4 col-lg-4 col-md-4"><label class="label-info">Draw</label></th>
+									<td class="col-8 col-xl-8 col-lg-8 col-md-8">	<span class="match-draw"></span></td>
+								</tr>
+								<tr>
+									<td class="col-4 col-xl-4 col-lg-4 col-md-4"><label class="label-info">Lose</label></th>
+									<td class="col-8 col-xl-8 col-lg-8 col-md-8">	<span class="match-lose"></span></td>
+								</tr>
+								<tr>
+									<td class="col-4 col-xl-4 col-lg-4 col-md-4"><label class="label-info">Status</label></th>
+									<td class="col-8 col-xl-8 col-lg-8 col-md-8">
+										<select class="form-control match-status" id="status-match">
+										 <option selected>Betting</option>
+										 <option value="1">Stop Bet</option>
+										 <option value="2">Playing</option>
+										 <option value="3">Finish</option>
+									 </select><td>
+								</tr>
+								<tr>
+									<td class="col-4 col-xl-4 col-lg-4 col-md-4"><label class="label-info">Result</label></td>
+									<td class="col-8 col-xl-8 col-lg-8 col-md-8">
+										<select class="form-control" id="result-match">
+											<option value="0">N/A</option>
+									 </select>
+								 </td>
+							</tr>
+						</table>
+						<button type="submit" class="btn btn-primary btn-submit" id="post">Submit</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@1.0.0-beta.37/dist/web3.min.js"></script>
+	<script src="./scripts/App.js"></script>
+	<script>
+
+	var match;
+		loadPage = () => {
+			reloadMatchToBet();
+		}
+		loadPage();
+
+		//render form update info when chose match
+		$(document).on('change', '[type="radio"]', async function() {
+				document.getElementById("form-update-match").classList.remove("disable-match-form");
+		    let _idMatch = $(this).val(); // Get the radio checked value
+
+		    match = await contract.methods.matches(_idMatch).call();
+				document.getElementById("table-match-info").getElementsByClassName("match-name")[0].innerHTML = match.matchName;
+				document.getElementById("table-match-info").getElementsByClassName("match-date")[0].innerHTML = match.dateTime;
+				document.getElementById("table-match-info").getElementsByClassName("match-win")[0].innerHTML = match.rateWin/decemailRate;
+				document.getElementById("table-match-info").getElementsByClassName("match-draw")[0].innerHTML = match.rateDraw/decemailRate;
+				document.getElementById("table-match-info").getElementsByClassName("match-lose")[0].innerHTML = match.rateLose/decemailRate;
+				let status = match.status;
+				let statusRow = document.getElementById("status-match");
+				let statusbuffer = ' <option value="0" ';
+				statusbuffer += (status==0)?"selected":"";
+				statusbuffer += '>Betting</option>';
+				statusbuffer += ' <option value="1"' ;
+				statusbuffer += (status==1)?"selected":"" ;
+				statusbuffer += '>Playing</option>';
+				statusbuffer += ' <option value="2"';
+				statusbuffer += (status==2)?"selected":"";
+				statusbuffer += '>Finish</option>';
+
+				statusRow.innerHTML = statusbuffer;
+			});
+
+			//render selection result
+			document.getElementById("status-match").addEventListener("change", function(e){
+				e.preventDefault();
+				let resultRow = document.getElementById("result-match");
+				let resultbuffer = '<option value="0">N/A</option>';
+				if(this.value == 2){
+					resultbuffer = '<option value="1">Win</option><option value="2">Draw</option><option value="3">Lose</option>';
+				}
+
+				resultRow.innerHTML = resultbuffer;
+			})
+
+			//Submit match
+			document.getElementById("form-update-match").addEventListener("submit", async function (e) {
+
+			  e.preventDefault();
+
+			  //Create gamer when user bet
+			  if(document.querySelector('input[name="groupMatch"]:checked') != null){
+
+		    let idMatch = document.querySelector('input[name="groupMatch"]:checked').value;
+		    let result = document.getElementById("result-match").value;
+		    let status =  document.getElementById("status-match").value;
+
+		   contract.methods.updateMatch(idMatch, status, result).send({
+				 from: (await web3.eth.getAccounts())[0],
+				 gas: 1000000,
+				 gasPrice: '25000000000'
+			 });
+		  }
+		});
+
+		//Dishplay bet when load
+		function reloadMatchToBet(){
+		   contract.methods.getMatchToBet().call().then((results)=>{
+		     for (var i = 0; i < results.length; i++) {
+		       var idMatch = results[i];
+		       contract.methods.matches(idMatch).call().then((match)=>{
+		          renderMatch(match);
+		       });
+		     }
+		   })
+		}
+
+
+		//dishplay a match
+		 renderMatch = (match)=>{
+
+			 	let winer = (match.winer==1)?"Win":(match.winer==2)?"Draw":(match.winer==3)?"Lose":"N/A";
+				let status = (match.status==0)?"Betting":(match.status==1)?"Playing":(match.status==3)?"Finish":"Continue";
+		    let matchrow = document.getElementById("tbody-match-view");
+		    let buffer = '<tr id="' + match.id + '">';
+		    buffer += '<td ><span class="match-date" name="match-time">' + match.dateTime +"</span></td>";
+		    buffer += '<td><span class="match-name" name="match-name">'+ match.matchName +"</span></td>";
+		    buffer += '<td><span class="match-rate">' + match.rateWin/decemailRate+'</span></td>';
+		    buffer += '<td><span class="match-rate">' + match.rateDraw/decemailRate +'</span></td>';
+		    buffer += '<td><span class="match-rate">' + match.rateLose/decemailRate +'</span></td>';
+				buffer += '<td><span class="match-rate">' + status + '</span></td>';
+				buffer += '<td><span class="match-rate">' + winer + '</span></td>';
+		    buffer += '<td><input type="radio" class="form-check-input" value="' + match.id + '" name="groupMatch"></td>';
+		    buffer+="</tr>";
+
+		    matchrow.innerHTML += buffer;
+		}
+		function TestEvent() {
+		  contract.once('LogPlayerBet', {
+		  filter: {playerAdress: 0x820B2950f0908B1035564E7B06ce5BE172503E05}, // Using an array means OR: e.g. 20 or 23
+		  fromBlock: 0
+		  }, (error, event) => { console.log(event); });
+		}
+		// Check the balance of contract : if balance >= max bet => return true; else return false;
+
+	</script>
+</body>
+
+</html>
