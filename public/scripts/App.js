@@ -19,20 +19,6 @@ var ABI = [
 		"type": "function"
 	},
 	{
-		"constant": true,
-		"inputs": [],
-		"name": "getNumberOfGamers",
-		"outputs": [
-			{
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
 		"constant": false,
 		"inputs": [
 			{
@@ -251,25 +237,6 @@ var ABI = [
 		"type": "function"
 	},
 	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "_idMatch",
-				"type": "uint256"
-			}
-		],
-		"name": "payWiners",
-		"outputs": [
-			{
-				"name": "pay",
-				"type": "bool"
-			}
-		],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
 		"constant": true,
 		"inputs": [],
 		"name": "getMatchToBet",
@@ -320,6 +287,10 @@ var ABI = [
 			{
 				"name": "valueLose",
 				"type": "uint256"
+			},
+			{
+				"name": "isPay",
+				"type": "bool"
 			}
 		],
 		"payable": false,
@@ -483,11 +454,9 @@ async function loadMetamask() {
 		let buffer = playerAdress;
 		addressrow.innerHTML = buffer;
 	}
-
-
 }
 loadMetamask();
-var address = "0x95E50b8689905B92bCe8BACD3f4260166F1f7ec5";
+var address = "0x65E71Bb34d0b72e11a68FeCF88B1Cfc4BB283187";
 window.web3 = new Web3(web3.currentProvider);
 var contract = new web3.eth.Contract(ABI,address);
 const decemailRate = 100;

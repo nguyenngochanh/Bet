@@ -30,8 +30,8 @@ document.getElementById("form-create-match").addEventListener("submit", async fu
         from: playerAdress,
         gas: 1000000,
         gasPrice: '25000000000'
-      }).then((gamerCounter)=>{
-        console.log(gamerCounter);
+      }).then((result)=>{
+        console.log(result);
       }).catch((e)=>{
         console.log(e);
       });
